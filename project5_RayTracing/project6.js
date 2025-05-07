@@ -42,7 +42,6 @@ vec3 Shade( Material mtl, vec3 position, vec3 normal, vec3 view )
 	for ( int i=0; i<NUM_LIGHTS; ++i ) {
 		// TO-DO: Check for shadows
 		// TO-DO: If not shadowed, perform shading using the Blinn model
-		// color += mtl.k_d * lights[i].intensity;
 	
 		Ray shadowRay;
 		shadowRay.pos = position;
@@ -119,7 +118,7 @@ vec4 RayTracer( Ray ray )
 			if ( IntersectRay( h, r ) ) {
 				// TO-DO: Hit found, so shade the hit point
 				// TO-DO: Update the loop variables for tracing the next reflection ray
-				vec3 view = normalize( -r.dir );
+				view = normalize( -r.dir );
 				clr += k_s * Shade( h.mtl, h.position, h.normal, view );
 				k_s *= h.mtl.k_s;
 				hit = h;
